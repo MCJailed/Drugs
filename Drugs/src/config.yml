@@ -1,0 +1,64 @@
+#Drugs by OhYea777
+ 
+# The Option will contain many settings, for now it
+# just contains the:
+# - Prefix
+# This is what goes before the message in-game
+# - Check_For_Updates
+# This enables update checking when you join the server
+Options:
+  Prefix: "&0(&aDrugs&0)&f"
+  Check_For_Updates: true
+# This is the important part, here you can customize
+# what the drugs are, their effects and strengths
+# It uses the following format:
+# Drugs:
+#   <item id of drug>:
+#     Effects:
+#       <effect name>:
+#         Duration: <duration of effect, in seconds>
+#         Strength: <strength of effect>
+# If you're using an item with a data value simply
+# set it up like below MAKE SURE IT HAS THE '' or
+# you WILL get errors
+# Drugs:
+#   '<id>:<value>':
+#     Effects:
+#       <effect name>:
+#         Duration: <duration of effect, in seconds>
+#         Strength: <strength of effect>
+Drugs:
+  353:
+    Effects:
+      Speed:
+        Duration: 10
+        Strength: 5
+      Haste:
+        Duration: 10
+        Strength: 5    
+      Strength:
+        Duration: 10
+        Strength: 1
+      Poison:
+        Duration: 20
+        Strength: 5
+  '351:2':
+    Effects:
+      Hunger:
+        Duration: 10
+        Strength: 2
+      Slow:
+        Duration: 10
+        Strength: 2
+      SlowDigging:
+        Duration: 10
+        Strength: 2
+# You can configure these messages to your liking
+# You can also use colour codes in these messages,
+# for a list of colour codes, see - http://ess.khhq.net/mc/
+# Use {drug} to get the name of the drug used, doesn't
+# work with "Reload"
+Message:
+  Reload: "Config Reloaded!"
+  No_Perm: "&4You Don't Have Permission!"
+  Drug_Use: "You Have Just Used {drug}"

@@ -1,0 +1,27 @@
+name: Drugs
+author: OhYea777
+main: com.mcjailed.drugs.Drugs
+version: 1.3
+
+commands:
+  getdrugs:
+    description: Returns all drugs
+  drugs:
+    description: Returns all drugs
+
+permissions:
+  drugs.*:
+    default: OP
+    children:
+      drugs.use: true
+      drugs.reload: true
+      drugs.update: true
+  drugs.use:
+    default: OP
+    description: Allows access to use drugs
+  drugs.reload:
+    default: OP
+    description: Allows reloading the Drugs config
+  drugs.update:
+    default: OP
+    description: Shows Update Message On Join
