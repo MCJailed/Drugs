@@ -1,6 +1,7 @@
 package com.mcjailed.drugs;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,6 +13,16 @@ public class ConfigUtils {
 
 	public static Plugin plugin(){
 		return Bukkit.getPluginManager().getPlugin("Drugs");
+	}
+	
+	public List<String> getCommand(String drug){
+		
+		if (plugin().getConfig().getStringList("Drugs." + drug + "Commands") != null){
+			List<String> list = plugin().getConfig().getStringList("Drugs." + drug + "Commands");
+			return list;
+		}
+		
+		return null;
 	}
 	
 	public static Map<ItemStack, Byte> getDrugIds(){
