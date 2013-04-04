@@ -1,5 +1,7 @@
 #Drugs by OhYea777
- 
+
+#FOR FULL INFORMATION ON CONFIGURATION SEE - http://dev.bukkit.org/server-mods/drugs/pages/configuration/
+
 # The Option will contain many settings, for now it
 # just contains the:
 # - Prefix
@@ -14,19 +16,37 @@ Options:
 # It uses the following format:
 # Drugs:
 #   <item id of drug>:
-#     Effects:
+#     Commands:
+#     - <command, don't include the '/'>
+#     Random_Effects:
 #       <effect name>:
+#         Chance: <percent chance, don't include the '%'>
 #         Duration: <duration of effect, in seconds>
-#         Strength: <strength of effect>
+#         Strength: <strength of effect, 0 is a strength of 1 etc.
+#     Commands:
+#     - <command, don't include the '/'>
+#     Options:
+#       Nickname: <nickname of drug>
+#       Usage_Message: <custom usage message>
 # If you're using an item with a data value simply
 # set it up like below MAKE SURE IT HAS THE '' or
 # you WILL get errors
 # Drugs:
 #   '<id>:<value>':
+#     Commands:
+#     - <command, don't include the '/'>
 #     Effects:
 #       <effect name>:
 #         Duration: <duration of effect, in seconds>
 #         Strength: <strength of effect>
+#     Random_Effects:
+#       <effect name>:
+#         Chance: <percent chance, don't include the '%'>
+#         Duration: <duration of effect, in seconds>
+#         Strength: <strength of effect, 0 is a strength of 1 etc.
+#     Options:
+#       Nickname: <nickname of drug>
+#       Usage_Message: <custom usage message>
 Drugs:
   353:
     Commands:
@@ -58,9 +78,23 @@ Drugs:
       SlowDigging:
         Duration: 10
         Strength: 2
+    Random_Effects:
+      Speed:
+        Chance: 10
+        Duration: 10
+        Strength: 1
     Options:
       Nickname: Weed
       Usage_Message: You have just smoked {drug}
+  39:
+    Random_Effects:
+      Nausea:
+        Chance: 50
+        Duration: 10
+        Strength: 10
+    Options:
+      Nickname: Shrooms
+      Usage_Message: You have just eaten {drug}
 # You can configure these messages to your liking
 # You can also use colour codes in these messages,
 # for a list of colour codes, see - http://ess.khhq.net/mc/

@@ -30,49 +30,61 @@ public class DrugEvent implements Listener{
 					Short data = null;
 					data = event.getItem().getDurability();
 					i = event.getItem().getTypeId();
-					e = ConfigUtils.getDrugEffects(i, data);
-					Material m = Material.getMaterial(i);
-					
-					for (String s : e){
-						Player p = event.getPlayer();
-						int duration = ConfigUtils.getDrugEffectDuration(i.toString(), data, s);
-						int strength = ConfigUtils.getDrugEffectStrength(i.toString(), data, s);
-						p.addPotionEffect(new PotionEffect(toPotion(s), duration*20, strength));
+					if (ConfigUtils.getDrugEffects(i, data) != null){
+						e = ConfigUtils.getDrugEffects(i, data);
 					}
-					
+					Material m = Material.getMaterial(i);
+
+					if (e != null){
+						for (String s : e){
+							Player p = event.getPlayer();
+							int duration = ConfigUtils.getDrugEffectDuration(i.toString(), data, s);
+							int strength = ConfigUtils.getDrugEffectStrength(i.toString(), data, s);
+							p.addPotionEffect(new PotionEffect(toPotion(s), duration*20, strength));
+						}
+					}
+
 					String drug = String.valueOf(event.getItem().getTypeId());
-					
+
 					if (event.getItem().getDurability() != 0){
 						drug = drug + ":" + event.getItem().getDurability();
 					}
-					
+
 					String message = Bukkit.getPluginManager().getPlugin("Drugs").getConfig().get("Message.Drug_Use").toString();
-					
+
 					if (ConfigUtils.getUseMessage(drug) != null){
 						message = ConfigUtils.getUseMessage(drug);
 					}
-					
+
 					if (ConfigUtils.getNick(drug) != null){
 						event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', String.format("%s %s", Bukkit.getPluginManager().getPlugin("Drugs").getConfig().get("Options.Prefix"), message.replace("{drug}", ConfigUtils.getNick(drug)))));
 					}
 					else{
 						event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', String.format("%s %s", Bukkit.getPluginManager().getPlugin("Drugs").getConfig().get("Options.Prefix"), Bukkit.getPluginManager().getPlugin("Drugs").getConfig().get("Message.Drug_Use").toString().replace("{drug}", m.name()))));
 					}
-					
+
+					if (ConfigUtils.getRand(drug) != null){
+						for (String s : ConfigUtils.getRand(drug)){
+							Player p = event.getPlayer();
+							int duration = ConfigUtils.getRandDrugEffectDuration(i.toString(), data, s);
+							int strength = ConfigUtils.getRandDrugEffectStrength(i.toString(), data, s);
+							p.addPotionEffect(new PotionEffect(toPotion(s), duration*20, strength));
+						}
+					}
+
 					if (ConfigUtils.getCommand(drug) != null){
 						for (String s : ConfigUtils.getCommand(drug)){
 							Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), s.replace("{player}", event.getPlayer().getName()));
-							Bukkit.broadcastMessage("Command: " + s.replace("{player}", event.getPlayer().getName()));
 						}
 					}
-					
+
 					if (event.getItem().getAmount() != 1 && !(event.getPlayer().getGameMode().equals(GameMode.CREATIVE))){
 						event.getItem().setAmount(event.getItem().getAmount() - 1);
 					}
 					else if (!(event.getPlayer().getGameMode().equals(GameMode.CREATIVE))){
 						event.getPlayer().getInventory().remove(event.getItem());
 					}
-					
+
 					event.setCancelled(true);
 				}
 			}
