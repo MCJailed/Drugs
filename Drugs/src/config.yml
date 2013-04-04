@@ -29,6 +29,8 @@ Options:
 #         Strength: <strength of effect>
 Drugs:
   353:
+    Commands:
+    - burn {player} 1
     Effects:
       Speed:
         Duration: 10
@@ -42,6 +44,9 @@ Drugs:
       Poison:
         Duration: 20
         Strength: 5
+    Options:
+      Nickname: Methamphetamine
+      Usage_Message: You have just smoked {drug}
   '351:2':
     Effects:
       Hunger:
@@ -53,6 +58,9 @@ Drugs:
       SlowDigging:
         Duration: 10
         Strength: 2
+    Options:
+      Nickname: Weed
+      Usage_Message: You have just smoked {drug}
 # You can configure these messages to your liking
 # You can also use colour codes in these messages,
 # for a list of colour codes, see - http://ess.khhq.net/mc/

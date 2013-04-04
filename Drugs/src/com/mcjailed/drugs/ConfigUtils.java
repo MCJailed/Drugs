@@ -15,13 +15,30 @@ public class ConfigUtils {
 		return Bukkit.getPluginManager().getPlugin("Drugs");
 	}
 	
-	public List<String> getCommand(String drug){
+	public static String getNick(String drug){
 		
-		if (plugin().getConfig().getStringList("Drugs." + drug + "Commands") != null){
-			List<String> list = plugin().getConfig().getStringList("Drugs." + drug + "Commands");
+		if (plugin().getConfig().getString("Drugs." + drug + ".Options.Nickname") != null){
+			String nick = plugin().getConfig().getString("Drugs." + drug + ".Options.Nickname");
+			return nick;
+		}
+		return null;
+	}
+	
+	public static String getUseMessage(String drug){
+		
+		if (plugin().getConfig().getString("Drugs." + drug + ".Options.Usage_Message") != null){
+			String msg = plugin().getConfig().getString("Drugs." + drug + ".Options.Usage_Message");
+			return msg;
+		}
+		return null;
+	}
+	
+	public static List<String> getCommand(String drug){
+		
+		if (plugin().getConfig().getStringList("Drugs." + drug + ".Commands") != null){
+			List<String> list = plugin().getConfig().getStringList("Drugs." + drug + ".Commands");
 			return list;
 		}
-		
 		return null;
 	}
 	
