@@ -23,8 +23,6 @@ Options:
 #         Chance: <percent chance, don't include the '%'>
 #         Duration: <duration of effect, in seconds>
 #         Strength: <strength of effect, 0 is a strength of 1 etc.
-#     Commands:
-#     - <command, don't include the '/'>
 #     Options:
 #       Nickname: <nickname of drug>
 #       Usage_Message: <custom usage message>

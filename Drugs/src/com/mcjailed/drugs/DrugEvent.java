@@ -24,12 +24,12 @@ public class DrugEvent implements Listener{
 
 		if (Drugs.perms.has(event.getPlayer(), "drugs.use")){
 			if (event.getAction() != null && event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR){
-				if (event.getPlayer().isSneaking() && getDrugIds(event.getItem())){
+				if (event.getPlayer().isSneaking() && getDrugIds(event.getPlayer().getItemInHand()) != null && getDrugIds(event.getPlayer().getItemInHand())){
 					Set<String> e = null;
 					Integer i = null;
 					Short data = null;
-					data = event.getItem().getDurability();
-					i = event.getItem().getTypeId();
+					data = event.getPlayer().getItemInHand().getDurability();
+					i = event.getPlayer().getItemInHand().getTypeId();
 					if (ConfigUtils.getDrugEffects(i, data) != null){
 						e = ConfigUtils.getDrugEffects(i, data);
 					}
@@ -44,10 +44,10 @@ public class DrugEvent implements Listener{
 						}
 					}
 
-					String drug = String.valueOf(event.getItem().getTypeId());
+					String drug = String.valueOf(event.getPlayer().getItemInHand().getTypeId());
 
-					if (event.getItem().getDurability() != 0){
-						drug = drug + ":" + event.getItem().getDurability();
+					if (event.getPlayer().getItemInHand().getDurability() != 0){
+						drug = drug + ":" + event.getPlayer().getItemInHand().getDurability();
 					}
 
 					String message = Bukkit.getPluginManager().getPlugin("Drugs").getConfig().get("Message.Drug_Use").toString();
@@ -78,11 +78,11 @@ public class DrugEvent implements Listener{
 						}
 					}
 
-					if (event.getItem().getAmount() != 1 && !(event.getPlayer().getGameMode().equals(GameMode.CREATIVE))){
-						event.getItem().setAmount(event.getItem().getAmount() - 1);
+					if (event.getPlayer().getItemInHand().getAmount() != 1 && !(event.getPlayer().getGameMode().equals(GameMode.CREATIVE))){
+						event.getItem().setAmount(event.getPlayer().getItemInHand().getAmount() - 1);
 					}
 					else if (!(event.getPlayer().getGameMode().equals(GameMode.CREATIVE))){
-						event.getPlayer().getInventory().remove(event.getItem());
+						event.getPlayer().getInventory().remove(event.getPlayer().getItemInHand());
 					}
 
 					event.setCancelled(true);
@@ -97,6 +97,9 @@ public class DrugEvent implements Listener{
 
 	public Boolean getDrugIds(ItemStack item){
 		for (ItemStack s : ConfigUtils.getDrugIds().keySet()){
+			if (s == null){
+				return false;
+			}
 			if (s.getTypeId() == item.getTypeId() && s.getDurability() == item.getDurability()){
 				return true;
 			}
