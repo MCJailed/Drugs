@@ -1,11 +1,9 @@
-name: Drugs
+name: DrugsPlus
 author: OhYea777
-main: com.mcjailed.drugs.Drugs
-version: 1.3
+main: com.ohyea777.drugsplus.DrugsPlus
+version: 1.5
 
 commands:
-  getdrugs:
-    description: Returns all drugs
   drugs:
     description: Returns all drugs
 

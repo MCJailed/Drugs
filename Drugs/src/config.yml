@@ -8,9 +8,13 @@
 # This is what goes before the message in-game
 # - Check_For_Updates
 # This enables update checking when you join the server
+# The:
+# - UseCustomPerms
+# Toggles the ability to use custom perms for each drug
 Options:
   Prefix: "&0(&aDrugs&0)&f"
   Check_For_Updates: true
+  UseCustomPerms: true
 # This is the important part, here you can customize
 # what the drugs are, their effects and strengths
 # It uses the following format:
@@ -26,6 +30,7 @@ Options:
 #     Options:
 #       Nickname: <nickname of drug>
 #       Usage_Message: <custom usage message>
+#		Permission: <custom permission>
 # If you're using an item with a data value simply
 # set it up like below MAKE SURE IT HAS THE '' or
 # you WILL get errors
