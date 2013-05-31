@@ -13,7 +13,7 @@ import com.ohyea777.drugs.listener.UpdateListener;
 public class DrugsPlus extends JavaPlugin{
 
 	public static DrugsPlus instance;
-	private Logger log = Logger.getLogger("Minecrat");
+	private Logger log = Logger.getLogger("Minecraft");
 	
 	@Override
 	public void onEnable(){
