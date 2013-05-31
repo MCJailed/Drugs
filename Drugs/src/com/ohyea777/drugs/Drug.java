@@ -5,7 +5,6 @@ import java.util.Set;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 public class Drug implements IDrug{
 
@@ -75,7 +74,7 @@ public class Drug implements IDrug{
 	public String getNick() {
 		if (this.isDrug()){
 			if (this.getConfigSection().getString("Options.Nickname") == null){
-				return plugin.getConfig().getString("Message.Drug_Use");
+				return this.drug;
 			}
 			else{
 				return this.getConfigSection().getString("Options.Nickname");
@@ -88,8 +87,7 @@ public class Drug implements IDrug{
 	public String getUsage() {
 		if (this.isDrug()){
 			if (this.getConfigSection().getString("Options.Usage_Message") == null){
-				ItemStack item = new ItemStack(this.id, 1);
-				return item.getType().toString();
+				return this.plugin.getConfig().getString("Message.Drug_Use");
 			}
 			else{
 				return this.getConfigSection().getString("Options.Usage_Message");
@@ -121,17 +119,24 @@ public class Drug implements IDrug{
 
 	@Override
 	public Boolean hasPermission(Player player) {
-		if (plugin.getConfig().getBoolean("Options.UseCustomPerms")){
-			if (this.getConfigSection().getString("Options.Permission") != null){
-				if (player.hasPermission(this.getConfigSection().getString("Options.Permission"))){
+		try{
+			if (plugin.getConfig().getBoolean("Options.UseCustomPerms")){
+				if (this.getConfigSection().getString("Options.Permission") != null){
+					if (player.hasPermission(this.getConfigSection().getString("Options.Permission").toLowerCase())){
+						return true;
+					}
+				}
+				if (player.hasPermission("drugs.use.*") || player.hasPermission("drugs.*") || player.hasPermission("drugs.use." + this.getNick())){
 					return true;
 				}
 			}
-			if (player.hasPermission("drugs.use.*") || player.hasPermission("drugs.*")){
-				return true;
+			else{
+				if (player.hasPermission("drugs.use")){
+					return true;
+				}
 			}
 		}
-		else{
+		catch (NullPointerException e){
 			if (player.hasPermission("drugs.use")){
 				return true;
 			}

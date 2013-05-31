@@ -10,11 +10,18 @@
 # This enables update checking when you join the server
 # The:
 # - UseCustomPerms
-# Toggles the ability to use custom perms for each drug
+# Toggles the ability to use custom perms for each drug, it is set to 'false'
+# by default. Change it to 'true' if you understand how it works
+#   -> The cutoms permissions work like this, if you have the 'Permission: <custom permission>'
+#	   in the drug's options. You use that permission for that drug.
+#      If the 'Permission: <custom permission>' is not specified, the permission will be 'drugs.use.<nickname>'
+#      using the nickname of the drug
+#      Alternatively you can either add 'drugs.use.*' to give access to all drugs, or if 'UseCustomPerms' is
+#	   set to false, the permission (to use every drug) will just be 'drugs.use'
 Options:
   Prefix: "&0(&aDrugs&0)&f"
   Check_For_Updates: true
-  UseCustomPerms: true
+  UseCustomPerms: false
 # This is the important part, here you can customize
 # what the drugs are, their effects and strengths
 # It uses the following format:
@@ -50,6 +57,7 @@ Options:
 #     Options:
 #       Nickname: <nickname of drug>
 #       Usage_Message: <custom usage message>
+#       Permission: <custom permission>
 Drugs:
   353:
     Commands:

@@ -1,6 +1,6 @@
-name: DrugsPlus
+name: Drugs
 author: OhYea777
-main: com.ohyea777.drugsplus.DrugsPlus
+main: com.ohyea777.drugs.DrugsPlus
 version: 1.5
 
 commands:

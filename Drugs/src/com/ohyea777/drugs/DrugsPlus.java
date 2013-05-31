@@ -23,7 +23,7 @@ public class DrugsPlus extends JavaPlugin{
 		Bukkit.getPluginManager().registerEvents(new UpdateListener(), this);
 		Bukkit.getPluginCommand("drugs").setExecutor(new DrugCMD(this));
 		
-		log.info(String.format("[%s] Version: Has Been Enabled", pdf.getName(), pdf.getVersion()));
+		log.info(String.format("[%s] Version: %s - Has Been Enabled", pdf.getName(), pdf.getVersion()));
 		
 		this.saveDefaultConfig();
 		this.getConfig().options().copyDefaults(true);
@@ -35,7 +35,7 @@ public class DrugsPlus extends JavaPlugin{
 		instance = this;
 		PluginDescriptionFile pdf = this.getDescription();
 		
-		log.info(String.format("[%s] Version: Has Been Disabled", pdf.getName(), pdf.getVersion()));
+		log.info(String.format("[%s] Version: %s - Has Been Disabled", pdf.getName(), pdf.getVersion()));
 	}
 	
 }

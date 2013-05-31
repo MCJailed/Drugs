@@ -79,6 +79,7 @@ public class PlayerListener implements Listener{
 					else{
 						Message m = new Message();
 						p.sendMessage(ChatColor.translateAlternateColorCodes('&', m.getPrefix() + m.getNoPerm()));
+						p.sendMessage(drug.getUsage().replace("{drug}", drug.getNick()));
 					}
 				}
 			}
